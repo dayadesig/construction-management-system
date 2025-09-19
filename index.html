@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Microsoft JhengHei', Arial, sans-serif;
-            background: linear-gradient(135deg, #AE0000 0%, #FF9797 100%);
+            background: linear-gradient(135deg, #613030 0%, #B87070 100%);
             min-height: 100vh;
             padding: 20px;
         }
@@ -29,7 +29,7 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #FFB5B5 0%, #FFECEC 100%);
+            background: linear-gradient(135deg, #743A3A 0%, #AD5A5A 100%);
             color: white;
             padding: 30px;
             text-align: center;
@@ -401,7 +401,12 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="projectName">工程名稱 *</label>
-                            <input type="text" id="projectName" name="projectName" placeholder="請輸入工程名稱" required>
+                            <select id="projectName" name="projectName">
+                                <option value="耕莘醫院-核子醫學科、正子斷層造影中心建置工程">耕莘醫院-核子醫學科、正子斷層造影中心建置工程</option>
+                                <option value="防癆協會第一胸腔防治所空間設計裝修工程">防癆協會第一胸腔防治所空間設計裝修工程</option>
+                                <option value="衛生福利部雙和醫院MRI房間配合工程">衛生福利部雙和醫院MRI房間配合工程</option>
+                                <option value="衛生福利部雙和醫院第一攝影室房間工程">衛生福利部雙和醫院第一攝影室房間工程</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="date">施工日期 *</label>
@@ -423,7 +428,12 @@
                         </div>
                         <div class="form-group">
                             <label for="supervisor">監工人員</label>
-                            <input type="text" id="supervisor" name="supervisor" placeholder="請輸入監工姓名">
+                            <select id="supervisor" name="supervison">
+                                <option value="陳星助">🔴 陳星助</option>
+                                <option value="黃慶">🟠 黃慶</option>
+                                <option value="王世元">🟢 王世元</option>
+                                <option value="徐英耀">🔵 徐英耀</option>
+                            </select>                    
                         </div>
                     </div>
                     <div class="form-row">
@@ -581,8 +591,16 @@
                 <div class="form-section">
                     <h3>📝 備註說明</h3>
                     <div class="form-group">
-                        <label for="notes">施工備註</label>
-                        <textarea id="notes" name="notes" rows="4" placeholder="請輸入施工狀況、問題或特殊事項..."></textarea>
+                        <label for="notes">工地勞工安全衛生事項之督導、公共環境與安全之維護及其他工地行政事務</label>
+                        <textarea id="notes" name="notes" rows="4" placeholder="請輸入工地勞工安全衛生事項之督導、公共環境與安全之維護及其他工地行政事務"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">請輸入通知分包廠商辦理事項</label>
+                        <textarea id="notes" name="notes" rows="4" placeholder="請輸入通知分包廠商辦理事項"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">重要事項紀錄（含主辦機關及監造單位指示、工地遇緊急異常狀況及需解決施工技術問題之通報處理情形、施工要徑、進度落後原因及因應對策等）</label>
+                        <textarea id="notes" name="notes" rows="4" placeholder="請輸入重要事項紀錄"></textarea>
                     </div>
                 </div>
 
@@ -1237,6 +1255,7 @@ ${materialsInfo}
     </script>
 </body>
 </html>
+
 
 
 

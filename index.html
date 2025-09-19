@@ -514,20 +514,67 @@
                     </div>
                 </div>
 
-                <!-- 材料進場區域 -->
+               <!-- 材料進場區域 -->
                 <div class="form-section">
-                    <h3>📦 材料進場記錄</h3>
-                    <button type="button" class="add-material-btn" onclick="addMaterialItem()">+ 新增材料</button>
-                    <div id="materialsList">
-                        <div class="material-item">
-                            <input type="text" placeholder="材料名稱" name="materialName[]" style="flex: 2;">
-                            <input type="number" placeholder="數量" name="materialQuantity[]" min="0" step="0.1" style="flex: 1;">
-                            <input type="text" placeholder="單位" name="materialUnit[]" style="flex: 1;">
-                            <input type="text" placeholder="供應商" name="materialSupplier[]" style="flex: 1.5;">
-                            <button type="button" class="remove-btn" onclick="removeMaterialItem(this)">刪除</button>
-                        </div>
+                  <h3>📦 材料進場記錄</h3>
+                  <button type="button" class="add-material-btn" onclick="addMaterialItem()">+ 新增材料</button>
+                  <div id="materialsList">
+                    <div class="material-item">
+                      <input type="text" placeholder="材料名稱" name="materialName[]">
+                      <input type="number" placeholder="數量" name="materialQuantity[]" min="0" step="0.1">
+                      <input type="text" placeholder="單位" name="materialUnit[]">
+                      <input type="text" placeholder="供應商" name="materialSupplier[]">
+                      <button type="button" class="remove-btn" onclick="removeMaterialItem(this)">刪除</button>
                     </div>
+                  </div>
                 </div>
+                
+                <style>
+                  /* 材料區塊的樣式 */
+                  .material-item {
+                    display: flex;
+                    flex-wrap: wrap; /* 允許換行 */
+                    gap: 8px;
+                    margin-bottom: 12px;
+                  }
+                
+                  .material-item input {
+                    flex: 1 1 100%; /* 預設手機一行一個 */
+                    padding: 8px;
+                    font-size: 16px;
+                    box-sizing: border-box;
+                  }
+                
+                  .remove-btn {
+                    flex: 1 1 100%; /* 預設手機讓刪除按鈕獨立一行 */
+                    padding: 8px;
+                    font-size: 14px;
+                    background: #f44336;
+                    color: #fff;
+                    border: none;
+                    border-radius: 6px;
+                  }
+                
+                  /* 平板/電腦才橫向排版 */
+                  @media (min-width: 768px) {
+                    .material-item input[name="materialName[]"] {
+                      flex: 2;
+                    }
+                    .material-item input[name="materialQuantity[]"] {
+                      flex: 1;
+                    }
+                    .material-item input[name="materialUnit[]"] {
+                      flex: 1;
+                    }
+                    .material-item input[name="materialSupplier[]"] {
+                      flex: 1.5;
+                    }
+                    .remove-btn {
+                      flex: 0 0 auto; /* 不要撐滿 */
+                    }
+                  }
+                </style>
+
 
                 <!-- 備註區域 -->
                 <div class="form-section">
@@ -1189,5 +1236,6 @@ ${materialsInfo}
     </script>
 </body>
 </html>
+
 
 

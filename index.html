@@ -400,10 +400,16 @@
                     <h3>🗓️ 基本資訊</h3>
                     <div class="form-row">
                         <div class="form-group">
+                            <label for="projectName">工程名稱 *</label>
+                            <input type="text" id="projectName" name="projectName" placeholder="請輸入工程名稱" required>
+                        </div>
+                        <div class="form-group">
                             <label for="date">施工日期 *</label>
                             <input type="date" id="date" name="date" required>
                             <span class="date-today">今日</span>
                         </div>
+                    </div>
+                    <div class="form-row">
                         <div class="form-group">
                             <label for="weather">天氣狀況</label>
                             <select id="weather" name="weather">
@@ -416,12 +422,12 @@
                                 <option value="颱風">🌀 颱風</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="form-row">
                         <div class="form-group">
                             <label for="supervisor">監工人員</label>
                             <input type="text" id="supervisor" name="supervisor" placeholder="請輸入監工姓名">
                         </div>
+                    </div>
+                    <div class="form-row">
                         <div class="form-group">
                             <label for="shift">施工班次</label>
                             <select id="shift" name="shift">
@@ -430,6 +436,10 @@
                                 <option value="夜班">🌙 夜班 (20:00-05:00)</option>
                                 <option value="全日班">⏰ 全日班</option>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">施工地點</label>
+                            <input type="text" id="location" name="location" placeholder="請輸入施工地點">
                         </div>
                     </div>
                 </div>
@@ -562,6 +572,7 @@
                     <thead>
                         <tr>
                             <th>編號</th>
+                            <th>工程名稱</th>
                             <th>日期</th>
                             <th>施工項目</th>
                             <th>完成數量</th>
@@ -681,7 +692,7 @@
             const form = document.getElementById('constructionForm');
             
             // 驗證必填欄位
-            if (!form.date.value || !form.workItem.value || !form.completedQuantity.value || !form.totalWorkers.value) {
+            if (!form.projectName.value || !form.date.value || !form.workItem.value || !form.completedQuantity.value || !form.totalWorkers.value) {
                 showAlert('請填寫所有必填欄位（標示*者）！', 'danger');
                 return;
             }
@@ -706,10 +717,12 @@
 
             const data = {
                 id: currentEditId || Date.now().toString(),
+                projectName: form.projectName.value,
                 date: form.date.value,
                 weather: form.weather.value,
                 supervisor: form.supervisor.value,
                 shift: form.shift.value,
+                location: form.location.value,
                 workItem: form.workItem.value,
                 workDetail: form.workDetail.value,
                 completedQuantity: parseFloat(form.completedQuantity.value),
@@ -790,7 +803,9 @@
             }
 
             const details = `
+工程名稱: ${item.projectName || '未指定'}
 施工日期: ${item.date}
+施工地點: ${item.location || '未記錄'}
 天氣狀況: ${item.weather || '未記錄'}
 監工人員: ${item.supervisor || '未指定'}
 施工班次: ${item.shift || '未指定'}
@@ -820,10 +835,12 @@ ${materialsInfo}
             if (!item) return;
 
             const form = document.getElementById('constructionForm');
+            form.projectName.value = item.projectName || '';
             form.date.value = item.date;
             form.weather.value = item.weather || '';
             form.supervisor.value = item.supervisor || '';
             form.shift.value = item.shift || '';
+            form.location.value = item.location || '';
             form.workItem.value = item.workItem;
             form.workDetail.value = item.workDetail || '';
             form.completedQuantity.value = item.completedQuantity;
@@ -891,9 +908,11 @@ ${materialsInfo}
             // 文字搜尋
             if (searchTerm) {
                 filteredData = filteredData.filter(item => 
+                    (item.projectName && item.projectName.toLowerCase().includes(searchTerm)) ||
                     item.workItem.toLowerCase().includes(searchTerm) ||
                     (item.workDetail && item.workDetail.toLowerCase().includes(searchTerm)) ||
                     (item.supervisor && item.supervisor.toLowerCase().includes(searchTerm)) ||
+                    (item.location && item.location.toLowerCase().includes(searchTerm)) ||
                     (item.notes && item.notes.toLowerCase().includes(searchTerm))
                 );
             }
@@ -931,6 +950,7 @@ ${materialsInfo}
             tbody.innerHTML = filteredData.map((item, index) => `
                 <tr>
                     <td>${index + 1}</td>
+                    <td>${item.projectName || '-'}</td>
                     <td>${item.date}</td>
                     <td>${item.workItem}${item.workDetail ? '<br><small>' + item.workDetail + '</small>' : ''}</td>
                     <td>${item.completedQuantity} ${item.unit || ''}</td>
@@ -980,7 +1000,9 @@ ${materialsInfo}
             constructionData.forEach((item, index) => {
                 const baseData = {
                     '編號': index + 1,
+                    '工程名稱': item.projectName || '',
                     '施工日期': item.date,
+                    '施工地點': item.location || '',
                     '天氣狀況': item.weather || '',
                     '監工人員': item.supervisor || '',
                     '施工班次': item.shift || '',

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Firebase工地管理系統</title>
+    <title>工地管理系統</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     
     <!-- Firebase SDK -->
@@ -444,9 +444,9 @@
     <!-- 認證介面 -->
     <div id="auth-container" class="auth-container">
         <div id="login-form">
-            <h2>Firebase工地管理系統</h2>
-            <div class="firebase-badge">Firebase雲端整合</div>
-            <p style="color: #666; margin-bottom: 30px;">多人協作 · 即時同步 · 遠端管理</p>
+            <h2>工地管理系統</h2>
+            <div class="firebase-badge">cloud</div>
+            <p style="color: #666; margin-bottom: 30px;">遠端管理</p>
             
             <form id="loginForm">
                 <div class="form-group">
@@ -464,7 +464,7 @@
 
         <div id="signup-form" style="display: none;">
             <h2>註冊新帳號</h2>
-            <div class="firebase-badge">Firebase雲端整合</div>
+            <div class="firebase-badge">雲端整合</div>
             <p style="color: #666; margin-bottom: 30px;">建立您的工地管理帳號</p>
             
             <form id="signupForm">
@@ -574,7 +574,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="workDetail">施工細項</label>
-                                <input type="text" id="workDetail" name="workDetail" placeholder="例如：一樓柱子澆置">
+                                <input type="text" id="workDetail" name="workDetail" placeholder="例如：電盤安裝">
                             </div>
                         </div>
                         <div class="form-row">
@@ -612,7 +612,7 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="laborWorkers">普工人數</label>
+                                <label for="laborWorkers">粗工人數</label>
                                 <input type="number" id="laborWorkers" name="laborWorkers" min="0" placeholder="普工人數">
                             </div>
                             <div class="form-group">
@@ -1699,4 +1699,5 @@ ${materialsInfo}
     </script>
 </body>
 </html>
+
 

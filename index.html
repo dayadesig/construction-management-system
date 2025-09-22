@@ -38,9 +38,15 @@
         🔥 Firebase 已連線
     </div>
 
-    <script type="module">
+	<!-- Firebase v8 SDK -->
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+    <script>
         // 🔥 Firebase 設定 - 請替換成你的專案設定
-		import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+		const firebaseConfig = { /* 你的 config */ };
+  firebase.initializeApp(firebaseConfig); // ✅ v8 的正確寫法
 		
         const firebaseConfig = {
             apiKey: "AIzaSyDxDEFXQdJdxKEcY__sAz2HroXDmtg8EQs",
@@ -48,11 +54,24 @@
             projectId: "construction-management-4ebe2",
             storageBucket: "construction-management-4ebe2.firebasestorage.app",
             messagingSenderId: "255668354731",
-            appId: "1:255668354731:web:fcec0c02986b03ed4d41ee",            
+            appId: "1:255668354731:web:fcec0c02986b03ed4d41ee",
+			measurementId: "G-MZF5XY3XKM"
         };
 
 
         const app = initializeApp(firebaseConfig);
+	  	const auth = getAuth(app);
+	  	const db = getFirestore(app);
+
+		import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+		let app;
+		if (!getApps().length) {
+		  app = initializeApp(firebaseConfig);
+		} else {
+		  app = getApps()[0];
+		}
+
 
   	console.log("🔥 Firebase 已連線");
         
@@ -1917,4 +1936,5 @@ ${materialsInfo}
 	        showAlert('清空功能開發中...', 'info');
 	    }
 	}
+
 

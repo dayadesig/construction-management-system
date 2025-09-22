@@ -38,22 +38,21 @@
         🔥 Firebase 已連線
     </div>
 
-    <script>
+    <script type="module">
         // 🔥 Firebase 設定 - 請替換成你的專案設定
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+		
         const firebaseConfig = {
             apiKey: "AIzaSyDxDEFXQdJdxKEcY__sAz2HroXDmtg8EQs",
             authDomain: "construction-management-4ebe2.firebaseapp.com",
             projectId: "construction-management-4ebe2",
             storageBucket: "construction-management-4ebe2.firebasestorage.app",
             messagingSenderId: "255668354731",
-            appId: "1:255668354731:web:fcec0c02986b03ed4d41ee",
-            measurementId: "G-MZF5XY3XKM"
+            appId: "1:255668354731:web:fcec0c02986b03ed4d41ee",            
         };
 
 
         const app = initializeApp(firebaseConfig);
-  	const auth = getAuth(app);
-  	const db = getFirestore(app);
 
   	console.log("🔥 Firebase 已連線");
         
@@ -1918,3 +1917,4 @@ ${materialsInfo}
 	        showAlert('清空功能開發中...', 'info');
 	    }
 	}
+

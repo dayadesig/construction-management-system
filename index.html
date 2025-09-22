@@ -855,13 +855,26 @@
         // Firebase 設定
         const firebaseConfig = {
             // 請替換成你的 Firebase 設定
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "firebase/app";
+            import { getAnalytics } from "firebase/analytics";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
             apiKey: "AIzaSyDxDEFXQdJdxKEcY__sAz2HroXDmtg8EQs",
             authDomain: "construction-management-4ebe2.firebaseapp.com",
             projectId: "construction-management-4ebe2",
-            storageBucket: "construction-management-4ebe2.firebasestorage.app",
             messagingSenderId: "255668354731",
             appId: "1:255668354731:web:fcec0c02986b03ed4d41ee",
             measurementId: "G-MZF5XY3XKM"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
         };
 
         // 全域變數
@@ -1699,5 +1712,6 @@ ${materialsInfo}
     </script>
 </body>
 </html>
+
 
 

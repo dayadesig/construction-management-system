@@ -386,11 +386,47 @@
             <p>記錄每日施工進度、人力配置與材料管理</p>
         </div>
 
+         <!-- 連線狀態指示器 -->
+    <div class="connection-status" id="connectionStatus">
+        🔥 Firebase 已連線
+    </div>
+
+    <script>
+        // 🔥 Firebase 設定 - 請替換成你的專案設定
+        const firebaseConfig = {
+            apiKey: "AIzaSyDxDEFXQdJdxKEcY__sAz2HroXDmtg8EQs",
+            authDomain: "construction-management-4ebe2.firebaseapp.com",
+            projectId: "construction-management-4ebe2",
+            storageBucket: "construction-management-4ebe2.firebasestorage.app",
+            messagingSenderId: "255668354731",
+            appId: "1:255668354731:web:fcec0c02986b03ed4d41ee",
+            measurementId: "G-MZF5XY3XKM"
+        };
+
+        // 初始化 Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // 全域變數
+        let currentUser = null;
+        let constructionData = [];
+        let currentEditId = null;
+        let unsubscribe = null;
+
+        // 應用程式初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🔥 Firebase 初始化成功');
+            console.log('🔧 Firebase Config:', firebaseConfig.projectId);
+
+
         <div class="tabs">
             <button class="tab active" onclick="switchTab('daily')">📝 每日施工記錄</button>
             <button class="tab" onclick="switchTab('manage')">📋 施工數據管理</button>
             <button class="tab" onclick="switchTab('stats')">📈 進度統計分析</button>
         </div>
+
+    </script>
 
         <!-- 每日施工記錄頁面 -->
         <div id="daily-tab" class="tab-content active">
@@ -1258,6 +1294,7 @@ ${materialsInfo}
     </script>
 </body>
 </html>
+
 
 
 

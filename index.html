@@ -439,33 +439,7 @@
                             </select>  
                         </div>
 
-                        <!-- 其他人員輸入欄位 (預設隱藏) -->
-                        <div class="form-group" id="otherSupervisorGroup" style="display: none;">
-                            <label for="otherSupervisor">請輸入人員姓名</label>
-                            <input type="text" id="otherSupervisor" name="otherSupervisor" placeholder="請輸入姓名">
-                        </div>
-                    </div>
-                    
-                    <script>
-                        // 監聽下拉選單變化
-                        document.getElementById('supervisor').addEventListener('change', function() {
-                            const otherGroup = document.getElementById('otherSupervisorGroup');
-                            const otherInput = document.getElementById('otherSupervisor');
-                            
-                            if (this.value === '其他人員') {
-                                // 顯示輸入欄位
-                                otherGroup.style.display = 'block';
-                                otherInput.required = true; // 設為必填
-                            } else {
-                                // 隱藏輸入欄位
-                                otherGroup.style.display = 'none';
-                                otherInput.required = false;
-                                otherInput.value = ''; // 清空內容
-                            }
-                        });
-                    </script>
 
-                    
                         <div class="form-group">
                             <label for="shift">施工班次</label>
                             <select id="shift" name="shift">
@@ -1267,6 +1241,7 @@ ${materialsInfo}
     </script>
 </body>
 </html>
+
 
 
 

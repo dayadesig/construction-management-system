@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Microsoft JhengHei', Arial, sans-serif;
-            background: linear-gradient(135deg, #613030 0%, #B87070 100%);
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
             min-height: 100vh;
             padding: 20px;
         }
@@ -29,7 +29,7 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #743A3A 0%, #AD5A5A 100%);
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
             color: white;
             padding: 30px;
             text-align: center;
@@ -386,47 +386,11 @@
             <p>記錄每日施工進度、人力配置與材料管理</p>
         </div>
 
-         <!-- 連線狀態指示器 -->
-    <div class="connection-status" id="connectionStatus">
-        🔥
-    </div>
-
-    <script>
-        // 🔥 Firebase 設定 - 請替換成你的專案設定
-        const firebaseConfig = {
-            apiKey: "AIzaSyDxDEFXQdJdxKEcY__sAz2HroXDmtg8EQs",
-            authDomain: "construction-management-4ebe2.firebaseapp.com",
-            projectId: "construction-management-4ebe2",
-            storageBucket: "construction-management-4ebe2.firebasestorage.app",
-            messagingSenderId: "255668354731",
-            appId: "1:255668354731:web:fcec0c02986b03ed4d41ee",
-            measurementId: "G-MZF5XY3XKM"
-        };
-
-        // 初始化 Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-
-        // 全域變數
-        let currentUser = null;
-        let constructionData = [];
-        let currentEditId = null;
-        let unsubscribe = null;
-
-        // 應用程式初始化
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('🔥 Firebase 初始化成功');
-            console.log('🔧 Firebase Config:', firebaseConfig.projectId);
-
-
         <div class="tabs">
             <button class="tab active" onclick="switchTab('daily')">📝 每日施工記錄</button>
             <button class="tab" onclick="switchTab('manage')">📋 施工數據管理</button>
             <button class="tab" onclick="switchTab('stats')">📈 進度統計分析</button>
         </div>
-
-    </script>
 
         <!-- 每日施工記錄頁面 -->
         <div id="daily-tab" class="tab-content active">
@@ -448,9 +412,8 @@
                         <div class="form-group">
                             <label for="date">施工日期 *</label>
                             <input type="date" id="date" name="date" required>
+                            <span class="date-today">今日</span>
                         </div>
-                    </div>
-                    <div class="form-row">
                         <div class="form-group">
                             <label for="weather">天氣狀況</label>
                             <select id="weather" name="weather">
@@ -463,6 +426,8 @@
                                 <option value="颱風">🌀 颱風</option>
                             </select>
                         </div>
+                    </div>
+                    <div class="form-row">
                         <div class="form-group">
                             <label for="supervisor">監工人員</label>
                             <select id="supervisor" name="supervison">
@@ -472,10 +437,8 @@
                                 <option value="王世元">🟢 王世元</option>
                                 <option value="徐英耀">🔵 徐英耀</option>
                                 <option value="王世元">🌞 其他人員</option>
-                            </select>                    
+                            </select>  
                         </div>
-                    </div>
-                    <div class="form-row">
                         <div class="form-group">
                             <label for="shift">施工班次</label>
                             <select id="shift" name="shift">
@@ -484,10 +447,6 @@
                                 <option value="夜班">🌙 夜班 (20:00-05:00)</option>
                                 <option value="全日班">⏰ 全日班</option>
                             </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="location">施工地點</label>
-                            <input type="text" id="location" name="location" placeholder="請輸入施工地點">
                         </div>
                     </div>
                 </div>
@@ -554,8 +513,8 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="laborWorkers">粗工人數</label>
-                            <input type="number" id="laborWorkers" name="laborWorkers" min="0" placeholder="粗工人數">
+                            <label for="laborWorkers">普工人數</label>
+                            <input type="number" id="laborWorkers" name="laborWorkers" min="0" placeholder="普工人數">
                         </div>
                         <div class="form-group">
                             <label for="overtimeHours">加班時數</label>
@@ -564,21 +523,21 @@
                     </div>
                 </div>
 
-               <!-- 材料進場區域 -->
+                <!-- 材料進場區域 -->
                 <div class="form-section">
-                  <h3>📦 材料進場記錄</h3>
-                  <button type="button" class="add-material-btn" onclick="addMaterialItem()">+ 新增材料</button>
-                  <div id="materialsList">
-                    <div class="material-item">
-                      <input type="text" placeholder="材料名稱" name="materialName[]">
-                      <input type="number" placeholder="數量" name="materialQuantity[]" min="0" step="0.1">
-                      <input type="text" placeholder="單位" name="materialUnit[]">
-                      <input type="text" placeholder="供應商" name="materialSupplier[]">
-                      <button type="button" class="remove-btn" onclick="removeMaterialItem(this)">刪除</button>
+                    <h3>📦 材料進場記錄</h3>
+                    <button type="button" class="add-material-btn" onclick="addMaterialItem()">+ 新增材料</button>
+                    <div id="materialsList">
+                        <div class="material-item">
+                            <input type="text" placeholder="材料名稱" name="materialName[]" style="flex: 2;">
+                            <input type="number" placeholder="數量" name="materialQuantity[]" min="0" step="0.1" style="flex: 1;">
+                            <input type="text" placeholder="單位" name="materialUnit[]" style="flex: 1;">
+                            <input type="text" placeholder="供應商" name="materialSupplier[]" style="flex: 1.5;">
+                            <button type="button" class="remove-btn" onclick="removeMaterialItem(this)">刪除</button>
+                        </div>
                     </div>
-                  </div>
                 </div>
-                
+
                 <style>
                   /* 材料區塊的樣式 */
                   .material-item {
@@ -624,7 +583,6 @@
                     }
                   }
                 </style>
-
 
                 <!-- 備註區域 -->
                 <div class="form-section">
@@ -676,7 +634,6 @@
                     <thead>
                         <tr>
                             <th>編號</th>
-                            <th>工程名稱</th>
                             <th>日期</th>
                             <th>施工項目</th>
                             <th>完成數量</th>
@@ -796,7 +753,7 @@
             const form = document.getElementById('constructionForm');
             
             // 驗證必填欄位
-            if (!form.projectName.value || !form.date.value || !form.workItem.value || !form.completedQuantity.value || !form.totalWorkers.value) {
+            if (!form.date.value || !form.workItem.value || !form.completedQuantity.value || !form.totalWorkers.value) {
                 showAlert('請填寫所有必填欄位（標示*者）！', 'danger');
                 return;
             }
@@ -821,12 +778,10 @@
 
             const data = {
                 id: currentEditId || Date.now().toString(),
-                projectName: form.projectName.value,
                 date: form.date.value,
                 weather: form.weather.value,
                 supervisor: form.supervisor.value,
                 shift: form.shift.value,
-                location: form.location.value,
                 workItem: form.workItem.value,
                 workDetail: form.workDetail.value,
                 completedQuantity: parseFloat(form.completedQuantity.value),
@@ -907,9 +862,7 @@
             }
 
             const details = `
-工程名稱: ${item.projectName || '未指定'}
 施工日期: ${item.date}
-施工地點: ${item.location || '未記錄'}
 天氣狀況: ${item.weather || '未記錄'}
 監工人員: ${item.supervisor || '未指定'}
 施工班次: ${item.shift || '未指定'}
@@ -939,12 +892,10 @@ ${materialsInfo}
             if (!item) return;
 
             const form = document.getElementById('constructionForm');
-            form.projectName.value = item.projectName || '';
             form.date.value = item.date;
             form.weather.value = item.weather || '';
             form.supervisor.value = item.supervisor || '';
             form.shift.value = item.shift || '';
-            form.location.value = item.location || '';
             form.workItem.value = item.workItem;
             form.workDetail.value = item.workDetail || '';
             form.completedQuantity.value = item.completedQuantity;
@@ -1012,11 +963,9 @@ ${materialsInfo}
             // 文字搜尋
             if (searchTerm) {
                 filteredData = filteredData.filter(item => 
-                    (item.projectName && item.projectName.toLowerCase().includes(searchTerm)) ||
                     item.workItem.toLowerCase().includes(searchTerm) ||
                     (item.workDetail && item.workDetail.toLowerCase().includes(searchTerm)) ||
                     (item.supervisor && item.supervisor.toLowerCase().includes(searchTerm)) ||
-                    (item.location && item.location.toLowerCase().includes(searchTerm)) ||
                     (item.notes && item.notes.toLowerCase().includes(searchTerm))
                 );
             }
@@ -1054,7 +1003,6 @@ ${materialsInfo}
             tbody.innerHTML = filteredData.map((item, index) => `
                 <tr>
                     <td>${index + 1}</td>
-                    <td>${item.projectName || '-'}</td>
                     <td>${item.date}</td>
                     <td>${item.workItem}${item.workDetail ? '<br><small>' + item.workDetail + '</small>' : ''}</td>
                     <td>${item.completedQuantity} ${item.unit || ''}</td>
@@ -1104,9 +1052,7 @@ ${materialsInfo}
             constructionData.forEach((item, index) => {
                 const baseData = {
                     '編號': index + 1,
-                    '工程名稱': item.projectName || '',
                     '施工日期': item.date,
-                    '施工地點': item.location || '',
                     '天氣狀況': item.weather || '',
                     '監工人員': item.supervisor || '',
                     '施工班次': item.shift || '',
@@ -1294,16 +1240,3 @@ ${materialsInfo}
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
